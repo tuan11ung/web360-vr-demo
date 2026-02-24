@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebVR + Web360 Demo</title>
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="./src/main.js" defer></script>
+  </head>
+  <body>
+    <main class="overlay">
+      <h1>WebVR + Web360 Demo</h1>
+      <p>Kéo chuột để nhìn 360, bấm hotspot để đổi scene, hoặc vào chế độ VR.</p>
+      <div class="actions">
+        <button id="enter-vr-btn" type="button">Enter VR</button>
+        <button id="scene-1-btn" data-scene="scene1" type="button">Scene 1</button>
+        <button id="scene-2-btn" data-scene="scene2" type="button">Scene 2</button>
+      </div>
+    </main>
+
+    <a-scene
+      id="vr-scene"
+      background="color: #10141b"
+      renderer="colorManagement: true"
+      vr-mode-ui="enabled: true"
+    >
+      <a-assets timeout="10000">
+        <img
+          id="scene1"
+          src="./public/assets/tomas-cocacola-4AxeQEi0gQc-unsplash.jpg"
+          crossorigin="anonymous"
+          alt="Phong cảnh núi"
+        />
+        <img
+          id="scene2"
+          src="./public/assets/timothy-oldfield-luufnHoChRU-unsplash.jpg"
+          crossorigin="anonymous"
+          alt="Phong cảnh sa mạc"
+        />
+      </a-assets>
+
+      <a-sky id="sky" src="#scene1" rotation="0 -130 0" material="shader: flat; side: back; transparent: false; opacity: 1"></a-sky>
+
+      <a-entity position="0 1.6 0">
+        <a-camera
+          look-controls
+          wasd-controls-enabled="false"
+          cursor="rayOrigin: mouse; fuse: false"
+          raycaster="objects: .hotspot"
+        ></a-camera>
+      </a-entity>
+
+      <a-entity id="hotspots" position="0 1.6 -2">
+        <a-circle
+          class="hotspot"
+          data-scene="scene1"
+          color="#36c3ff"
+          radius="0.2"
+          position="-0.6 0 0"
+        ></a-circle>
+        <a-text value="Scene 1" color="#fff" align="center" position="-0.6 -0.35 0"></a-text>
+
+        <a-circle
+          class="hotspot"
+          data-scene="scene2"
+          color="#ff8a36"
+          radius="0.2"
+          position="0.6 0 0"
+        ></a-circle>
+        <a-text value="Scene 2" color="#fff" align="center" position="0.6 -0.35 0"></a-text>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
