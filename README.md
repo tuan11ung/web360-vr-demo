@@ -1,4 +1,4 @@
-# web360-vr-demo# WebVR + Web360 Demo Template
+# WebVR + Web360 Demo Template
 
 Mẫu dự án tối thiểu để demo trong bài thuyết trình về WebVR/Web360.
 
